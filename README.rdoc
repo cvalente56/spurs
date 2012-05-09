@@ -24,3 +24,16 @@ You can also create multiple messages for each type
 You can also create matching flash messages via javascript
   spurs.flash.alert("Something has gone wrong!","error");
 for the singular versions of each of the four types above ("info", "warning", "error", "notice")
+
+== Navigation
+
+Spurs makes creation of bootstrap navigation easy!.
+
+    spurs_nav :type => :pills do |nav|
+        nav.tab :user, :icon => :user
+        nav.dropdown :menu, :icon => :cog,
+                      :icon_only => true,
+                      :actions => [
+                        {:name => "One", :icon => :plus, :onclick => "alert('one');"},
+                        {:name => "Two", :icon => :minus, :onclick => "alert('two');"}
+                      ]
