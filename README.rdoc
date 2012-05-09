@@ -29,11 +29,59 @@ for the singular versions of each of the four types above ("info", "warning", "e
 
 Spurs makes creation of bootstrap navigation easy!.
 
-    spurs_nav :type => :pills do |nav|
-        nav.tab :user, :icon => :user
-        nav.dropdown :menu, :icon => :cog,
-                      :icon_only => true,
-                      :actions => [
-                        {:name => "One", :icon => :plus, :onclick => "alert('one');"},
-                        {:name => "Two", :icon => :minus, :onclick => "alert('two');"}
-                      ]
+  spurs_nav :type => :pills do |nav|
+    
+    # a simple nav item as a regular link
+    nav.tab :user, :icon => :user, :href => "#user"
+    
+    # a nav item that runs some javascript
+    nav.tab :settings, :icon => :cog, :onclick => "alert('hello');"
+    
+    # a nav item that only shows its icon (not its name)
+    nav.tab :secure, :icon => :lock, :icon_only => true
+    
+    # a dropdown menu with two actions
+    nav.dropdown :menu, 
+                  :icon => :cog, 
+                  :icon_only => true,
+                  :actions => [ {:name => "one", :icon => :plus, :href => "#one"},
+                               {:name => "two", :icon => :minus, :href => "#two"}]
+
+will generate HTML
+  <ul class="nav nav-pills  ">
+    <li>
+      <a href="#user">
+        <i class="icon-user"></i>User
+      </a>
+    </li>
+    <li>
+      <a onclick="alert('hello');">
+        <i class="icon-cog"></i>Settings
+      </a>
+    </li>
+    <li>
+      <a>
+        <i class="icon-lock"></i>Secure
+      </a>
+    </li>
+    <li class="dropdown" data-dropdown="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-cog"></i>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#one">
+            <i class="icon-plus"></i>No Name
+          </a>
+        </li>
+        <li>
+          <a href="#two">
+            <i class="icon-minus"></i>No Name
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+You can override
