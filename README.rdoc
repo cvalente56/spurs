@@ -47,7 +47,11 @@ Spurs makes creation of bootstrap navigation easy!.
                   :actions => [ {:name => "one", :icon => :plus, :href => "#one"},
                                {:name => "two", :icon => :minus, :href => "#two"}]
 
-will generate HTML
+will generate a menu like this...
+
+![image]https://github.com/TrueNorth/spurs/raw/master/docs/img/pic1.png
+
+or in HTML...
   <ul class="nav nav-pills  ">
     <li>
       <a href="#user">
