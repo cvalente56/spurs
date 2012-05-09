@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.summary     = "Bells and whistles for Twitter Bootstrap"
   s.description = "Helpers and extensions for the Twitter Bootstrap user interface"
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.markdown"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.1"
