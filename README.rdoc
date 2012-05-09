@@ -84,4 +84,23 @@ will generate HTML
     </li>
   </ul>
 
-You can override
+You can specify some active criteria for menu items
+
+  spurs_nav :type => :pills do |nav|
+
+    # force this to be active with a boolean
+    nav.tab :user, :icon => :user, :href => "#user", 
+            :active => true
+    
+    # controller criteria (if controller_name == :settings)
+    nav.tab :settings, :icon => :cog, :onclick => "alert('hello');", 
+            :active => {:controller => :settings}
+
+    # controller and action criteria (if controller_name == :settings && action_name == ;edit)
+    nav.tab :settings, :icon => :cog, :onclick => "alert('hello');", 
+            :active => {:controller => :settings, :action => :edit}
+
+    # multiple controller/action criteria (if (controller_name == :settings && action_name == :edit) || (controller_name == :user && action_name == :edit)
+    nav.tab :settings, :icon => :cog, :onclick => "alert('hello');", 
+            :active => [{:controller => :settings, :action => :edit},
+                        {:controller => :users, :action => :edit}]
