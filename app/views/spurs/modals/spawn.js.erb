@@ -1,0 +1,17 @@
+<%-#create the modal container %>
+var modal_container = tn.createEl('div');
+$('body')[0].appendChild(modal_container);
+
+<%-#put the partial in the modal%>
+<%- modal_container_content =
+    escape_javascript(
+        spurs_modal  modal_file_or_partial,
+                     modal_object,
+                     modal_options
+
+    )
+%>
+modal_container.innerHTML = "<%= modal_container_content %>";
+
+<%-#activate the modal%>
+$(modal_container.children[0]).modal();

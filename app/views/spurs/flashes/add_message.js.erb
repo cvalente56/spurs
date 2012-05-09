@@ -1,0 +1,3 @@
+var _container = spurs.flashes.highest_priority_flash_container();
+<%- to_render = spurs_alert(_message,:flavor => _flavor.to_s.parameterize.to_sym, :close_button => true, :builder => Spurs::Flash::Builder).html_safe%>
+_container.append("<%=escape_javascript(to_render)%>");

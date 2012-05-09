@@ -1,0 +1,32 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+var spurs = spurs ? spurs : {};
+
+spurs.flashes = {
+
+    highest_priority_flash_container:function () {
+        var highest = -100;
+        var highest_item = null;
+        $('.' + spurs.vars.flashes.container_class).each(
+                function (idx, item) {
+                    priority = parseInt($(item).attr('id').substring($('.' + spurs.vars.flashes.container_class).attr('id').indexOf(spurs.vars.flashes.container_id_prefix) + spurs.vars.flashes.container_id_prefix.length));
+                    if (priority > highest) {
+                        highest = priority;
+                        highest_item = $(item);
+                    }
+
+                });
+        return highest_item;
+    },
+    alert:function (message, flavor) {
+        $.ajax({
+            url: spurs.vars.flashes.create_path + '.js',
+            type:'POST',
+            data:{
+                message:message,
+                flavor:flavor
+            }
+        });
+    }
+
+}
