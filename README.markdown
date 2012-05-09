@@ -5,47 +5,54 @@ Spurs is a library that adds some bells and whistles to the Twitter Bootstrap GU
 ## Flash Messages
 
 Put this in your layout file wherever you want to render the flash messages
-  <%= spurs_flash_helper %>
+  
+    <%= spurs_flash_helper %>
+
 and flash messages will be automatically rendered on page loads
 
 ### From the rails side
 
 By default, you can create four types of messages
-  flash_addItem(:notices,"A message about something successfully happening!")
-  flash_addItem(:warnings, "Something is unusual, but not absolutely critical")
-  flash_addItem(:errors, "Something critical has happened")
-  flash_addItem(:infos, "Here's some information")
+    
+    flash_addItem(:notices,"A message about something successfully happening!")
+    flash_addItem(:warnings, "Something is unusual, but not absolutely critical")
+    flash_addItem(:errors, "Something critical has happened")
+    flash_addItem(:infos, "Here's some information")
+
 You can also create multiple messages for each type
-  flash_addItem(:errors, "Problem validating phone number")
-  flash_addItem(:errors, "Problem validating street address")
+    
+    flash_addItem(:errors, "Problem validating phone number")
+    flash_addItem(:errors, "Problem validating street address")
 
 ### From the javascript side
 
 You can also create matching flash messages via javascript
-  spurs.flash.alert("Something has gone wrong!","error");
+  
+    spurs.flash.alert("Something has gone wrong!","error");
+
 for the singular versions of each of the four types above ("info", "warning", "error", "notice")
 
 ## Navigation
 
 Spurs makes creation of bootstrap navigation easy!.
 
-  spurs_nav :type => :pills do |nav|
-    
-    # a simple nav item as a regular link
-    nav.tab :user, :icon => :user, :href => "#user"
-    
-    # a nav item that runs some javascript
-    nav.tab :settings, :icon => :cog, :onclick => "alert('hello');"
-    
-    # a nav item that only shows its icon (not its name)
-    nav.tab :secure, :icon => :lock, :icon_only => true
-    
-    # a dropdown menu with two actions
-    nav.dropdown :menu, 
-                  :icon => :cog, 
-                  :icon_only => true,
-                  :actions => [ {:name => "one", :icon => :plus, :href => "#one"},
-                               {:name => "two", :icon => :minus, :href => "#two"}]
+    spurs_nav :type => :pills do |nav|
+      
+      # a simple nav item as a regular link
+      nav.tab :user, :icon => :user, :href => "#user"
+      
+      # a nav item that runs some javascript
+      nav.tab :settings, :icon => :cog, :onclick => "alert('hello');"
+      
+      # a nav item that only shows its icon (not its name)
+      nav.tab :secure, :icon => :lock, :icon_only => true
+      
+      # a dropdown menu with two actions
+      nav.dropdown :menu, 
+                    :icon => :cog, 
+                    :icon_only => true,
+                    :actions => [ {:name => "one", :icon => :plus, :href => "#one"},
+                                 {:name => "two", :icon => :minus, :href => "#two"}]
 
 will generate a menu like this...
 
