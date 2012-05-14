@@ -42,6 +42,7 @@ module Spurs
         content_tag(:div, alert_content.html_safe, :class => "alert alert-block #{extra_class}")
       end
 
+
       ##
       # Generate HTML for flash messages
       # = Examples
@@ -65,7 +66,7 @@ module Spurs
         end
         flash.clear
 
-        #Rails.logger.info("MESSAGE HASH >>#{message_hash.to_json}")
+        Rails.logger.info("MESSAGE HASH >>#{message_hash.to_json}")
 
 
         #process the message hash now

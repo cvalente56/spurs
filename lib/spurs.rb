@@ -16,11 +16,13 @@ require "spurs/flash"
 require "spurs/nav"
 require "spurs/section"
 require "spurs/engine"
+require "spurs/badge"
 
 ActionView::Base.send :include, Spurs::Flash::Helper
 ActionView::Base.send :include, Spurs::Nav::Helper
 ActionView::Base.send :include, Spurs::Section::Helper
 ActionView::Base.send :include, Spurs::Modal::Helper
+ActionView::Base.send :include, Spurs::Badge::Helper
 
 ActionController::Base.send :include, Spurs::Flash::ControllerMods
 ActionController::Base.send :include, Spurs::Modal::ControllerMods
