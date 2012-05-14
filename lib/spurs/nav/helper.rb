@@ -23,7 +23,7 @@ module Spurs
           opts[:type] = :tabs
         end
 
-        nav_builder = opts[:builder].new(opts_to_pass_to_builder)
+        nav_builder = opts[:builder].new(controller,opts_to_pass_to_builder)
 
         output = capture(nav_builder, &block)
 

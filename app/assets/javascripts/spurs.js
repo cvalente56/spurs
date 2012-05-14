@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-
 //= require ./spurs/vars
 //= require ./spurs/flashes
 //= require ./spurs/sections
