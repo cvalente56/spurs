@@ -2,6 +2,8 @@ module Spurs
   module Nav
     class Builder
       include ActionView::Helpers::TagHelper
+      include ActionView::Helpers::ControllerHelper
+      include ActionView::Helpers::UrlHelper
 
       @@default_tab_options = {
           :icon_only => false
@@ -9,13 +11,15 @@ module Spurs
 
       @@default_dropdown_options = {
           :href      => "#",
+          :method    => :get,
           :icon_only => false
       }
 
       @args_from_helper
 
-      def initialize(opts={ })
+      def initialize(controller, opts={ })
         @args_from_helper = opts.clone
+        assign_controller(controller)
       end
 
       # Create a tab
@@ -44,11 +48,13 @@ module Spurs
 
       end
 
-        private
+      private
 
       def tab_tag(name, content_inside_a, content_inside_li=nil, options={ })
 
-        if options.is_a?(Array) then raise "opts should be a hash! #{opts.to_json}" end
+        if options.is_a?(Array) then
+          raise "opts should be a hash! #{opts.to_json}"
+        end
 
         opts         = @@default_tab_options.merge(@args_from_helper.merge(options))
 
@@ -70,17 +76,25 @@ module Spurs
             { :class => 'dropdown', 'data-dropdown' => :dropdown } :
             { }
 
-        ## The icon for this tab
-        if opts[:icon]
-          display_name = if opts[:icon_only]
-                           content_tag_string(:i, nil, :class => "icon-#{opts[:icon].to_s}")
-                         else
-                           content_tag_string(:i, nil, :class => "icon-#{opts[:icon].to_s}").concat(display_name)
-                         end
+        if li_opts[:class] == nil then
+          li_opts[:class] = ""
+        end
+        if a_opts[:class] == nil then
+          a_opts[:class] = ""
         end
 
-        if li_opts[:class] == nil then li_opts[:class] = "" end
-        if a_opts[:class] == nil then a_opts[:class] = "" end
+        ## The icon for this tab
+        if opts[:icon]
+          if opts[:icon_only]
+            old_dn       = display_name.clone
+            display_name = content_tag_string(:i, nil, :class => "icon-#{opts[:icon].to_s}")
+            #add the tooltip
+            li_opts[:class].concat(" has_tooltip ")
+            li_opts['data-original-title'] = old_dn
+          else
+            display_name = content_tag_string(:i, nil, :class => "icon-#{opts[:icon].to_s}").concat(display_name)
+          end
+        end
 
 
         if opts[:dynamic] && (opts[:dropdown] == nil || opts[:dropdown] == false)
@@ -91,6 +105,9 @@ module Spurs
         # Process :href and :onclick
         if opts[:href] then
           a_opts[:href] = opts[:href]
+          if opts[:method] then
+            a_opts[:method] = opts[:method]
+          end
         end
         if opts[:onclick]
           a_opts[:onclick] = opts[:onclick]
@@ -98,9 +115,12 @@ module Spurs
             a_opts[:href] = "#"
           end
         end
+        if opts[:confirm] then
+          a_opts[:confirm] = opts[:confirm]
+        end
 
 
-        # process active option
+                                                                        # process active option
         if opts[:active] != nil
           is_active = nil
           # check to see if many conditions are specified
@@ -114,7 +134,7 @@ module Spurs
                     condition_found = true
                   end
                 else
-                  if process_controller_active_condition(a)
+                  if process_controller_action_active_condition(a)
                     condition_found = true
                   end
                 end
@@ -150,13 +170,16 @@ module Spurs
           display_name = display_name.concat(content_inside_a)
         end
 
-        a_content = content_tag_string(:a, display_name.html_safe, a_opts)
-        #Rails.logger.debug("a_hash #{a_opts}\t#{a_content}")
-        # the <a> tag goes in the <li>
+        link_dest  = a_opts[:href] ? a_opts.delete(:href) : "#"
+        a_content  = link_to(display_name.html_safe, link_dest, a_opts) #content_tag_string(:a, display_name.html_safe, a_opts)
+                                                                        #Rails.logger.debug("a_hash #{a_opts}\t#{a_content}")
+                                                                        # the <a> tag goes in the <li>
         li_content = a_content
         if content_inside_li # is there extra stuff to throw in there?
           li_content = li_content.concat(content_inside_li)
         end
+
+
         content_tag_string(:li, li_content, li_opts)
       end
 
@@ -166,14 +189,14 @@ module Spurs
         end
         menu_items = ""
         dat.each do |item|
-          display_name = if item[:label] then
-                           item[:label]
-                         else
-                           item[:id] ? item[:id].to_s.titlecase : "No Name"
-                         end
+          display_name    = if item[:label] then
+                              item[:label]
+                            else
+                              item[:id] ? item[:id].to_s.titlecase : "No Name"
+                            end
           item[:dropdown] = false
 
-          menu_items.concat(tab_tag(display_name, nil, nil, item.merge({:toggle => :none})))
+          menu_items.concat(tab_tag(display_name, nil, nil, item.merge({ :toggle => :none })))
         end
         menu = content_tag_string(:ul, menu_items.html_safe, :class => "dropdown-menu")
         return menu
