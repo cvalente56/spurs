@@ -42,7 +42,9 @@ module Spurs
         content_tag(:div, alert_content.html_safe, :class => "alert alert-block #{extra_class}")
       end
 
-
+      def logger
+        Rails.logger
+      end
       ##
       # Generate HTML for flash messages
       # = Examples
@@ -66,7 +68,7 @@ module Spurs
         end
         flash.clear
 
-        Rails.logger.info("MESSAGE HASH >>#{message_hash.to_json}")
+        logger.debug("MESSAGE HASH >>#{message_hash.to_json}")
 
 
         #process the message hash now
@@ -74,7 +76,7 @@ module Spurs
         message_hash.each do |k, v_arr|
           v_arr.each do |v|
             if v == nil
-              Rails.logger.warn("Flash key with no value: #{k.to_s} in flash hash #{v_arr.to_json}")
+              logger.warn("Flash key with no value: #{k.to_s} in flash hash #{v_arr.to_json}")
             else
               content << spurs_alert(v, :flavor => k, :builder => my_options[:builder], :title => k.to_s.singularize.tableize.to_sym.to_s.titlecase)
             end
@@ -103,7 +105,7 @@ module Spurs
         # attempt to find the flavor in the list of known stuff
         if Spurs::Flash::flavors.find_index(my_options[:flavor]) == nil
           # didn't find it.
-          Rails.logger.warn("Unknown flash flavor \"#{my_options[:flavor]}\". Using a default instead")
+          logger.warn("Unknown flash flavor \"#{my_options[:flavor]}\". Using a default instead")
           my_options[:flavor] = Spurs::Flash::default_args[:default][:flavor]
         end
 

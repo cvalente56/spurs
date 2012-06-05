@@ -1,0 +1,66 @@
+table
+  .show_for_pinned
+    display: none
+
+// Mobile
+@media only screen and (max-width: 767px)
+  table.responsive
+    margin-bottom: 0
+  .scrollable, .pinned
+    table
+      td, th
+        line-height: 21px
+  .pinned
+    position: absolute
+    left: 0
+    top: 0
+    background: #fff
+    width: 200px
+
+    overflow: hidden
+    overflow-x: scroll
+    //border-right: 1px solid #ccc
+    //border-left: 1px solid #ccc
+    table
+      border-right: none
+      border-left: none
+      width: 100%
+      .show_for_pinned
+        display: table-cell
+      .hide_for_pinned
+        display: none
+      th, td
+        white-space: nowrap
+
+  div.table-wrapper
+    position: relative
+    margin-bottom: 20px
+    overflow: hidden
+
+
+    border-radius: 5px
+    div.scrollable
+      table
+        margin-left: 200px
+        width: auto
+        width: 200px
+        min-width: 60%
+      overflow: scroll
+      overflow-y: hidden
+  table.responsive
+    td
+      position: relative
+      white-space: nowrap
+      overflow: hidden
+    th
+      position: relative
+      white-space: nowrap
+      overflow: hidden
+      &.pin_for_mobile
+        display: none
+    td.pin_for_mobile, &.pinned td
+      display: none
+
+@media only screen and (max-width: 567px)
+  div.table-wrapper
+    border-right: 1px solid #ccc
