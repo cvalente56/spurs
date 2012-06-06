@@ -5,9 +5,9 @@ Spurs is a library that adds some bells and whistles to the Twitter Bootstrap GU
 ## Flash Messages
 
 Put this in your layout file wherever you want to render the flash messages
-
-    <%= spurs_flash_helper %>
-
+```erb
+<%= spurs_flash_helper %>
+```
 and flash messages will be automatically rendered on page loads
 
 From the rails side, you can create four types of messages
@@ -17,21 +17,22 @@ From the rails side, you can create four types of messages
 * :info
 * :error
 
-        flash_addItem(:notices,"A message about something successfully happening!")
-
+```ruby
+flash_addItem(:notices,"A message about something successfully happening!")
+```
 
 You can also use JavaScript to generate matching messages
-
-        spurs.flash.alert("Something has gone wrong!","error");
-
+```javascript
+spurs.flash.alert("Something has gone wrong!","error");
+```
 [More...](https://github.com/TrueNorth/spurs/wiki/Flash-Messages)
 
 ## Navigation
 
 Spurs makes creation of bootstrap navigation easy!.
-
-    spurs_nav :type => :pills do |nav|
-        nav.tab :user, :icon => :user, :href => "#user"
-        nav.tab :settings, :icon => :cog, :onclick => "alert('hello');"
-
+```haml
+= spurs_nav :type => :pills do |nav|
+    = nav.tab :user, :icon => :user, :href => "#user"
+    = nav.tab :settings, :icon => :cog, :onclick => "alert('hello');"
+```
 [More...](https://github.com/TrueNorth/spurs/wiki/Navigation)
