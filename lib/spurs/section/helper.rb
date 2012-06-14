@@ -20,7 +20,7 @@ module Spurs
         if !opts[:class]
           opts[:class] = ""
         end
-        opts[:class].concat(" vcenter_outer")
+        opts[:class] = "vcenter_outer ".concat(opts[:class])
 
         # extract inner options
         inner_opts = opts[:inner_html] ? opts.delete(:inner_html) : {}

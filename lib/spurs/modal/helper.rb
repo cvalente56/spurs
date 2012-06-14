@@ -10,7 +10,7 @@ module Spurs
         modal_id = "modal_#{SecureRandom::hex(5)}"
 
         options_for_content = options[:content_options] ? options.delete(:content_options) : { }
-        logger.debug "ContentOptions: #{options_for_content}"
+        #logger.debug "ContentOptions: #{options_for_content}"
         if object == nil
           content = render :file => file_or_partial, :locals => options_for_content
         else

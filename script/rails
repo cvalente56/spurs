@@ -4,5 +4,20 @@
 ENGINE_ROOT = File.expand_path('../..', __FILE__)
 ENGINE_PATH = File.expand_path('../../lib/spurs/engine', __FILE__)
 
-require 'rails/all'
+require "rails"
+
+%w(
+  action_controller
+  active_resource
+  rails/test_unit
+  sprockets
+).each do |framework|
+  begin
+    require "#{framework}/railtie"
+  rescue LoadError
+  end
+end
+
+
+
 require 'rails/engine/commands'
