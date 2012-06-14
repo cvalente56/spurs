@@ -1,9 +1,13 @@
-<%-#create the modal container %>
+//create the modal container
 var modal_container = tn.createEl('div');
 $('body')[0].appendChild(modal_container);
 
-<%-#put the partial in the modal%>
-<%- modal_container_content =
+//put the partial in the modal
+
+
+<%-
+    #Rails.logger.debug("Options: #{modal_options.to_json}")
+    modal_container_content =
     escape_javascript(
         spurs_modal  modal_file_or_partial,
                      modal_object,
@@ -13,6 +17,6 @@ $('body')[0].appendChild(modal_container);
 %>
 modal_container.innerHTML = "<%= modal_container_content %>";
 
-<%-#activate the modal%>
+//activate the modal
 $(modal_container.children[0]).modal();
 window._asd();
