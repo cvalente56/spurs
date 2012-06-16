@@ -17,6 +17,47 @@ $('body')[0].appendChild(modal_container);
 %>
 modal_container.innerHTML = "<%= modal_container_content %>";
 
+if ($(modal_container.children[0]).find('.javascript-hooks').size() > 0) {
+    var js_hooks = $(modal_container.children[0]).find('.javascript-hooks');
+    var modal = $(modal_container.children[0]);
+
+    modal.on('hidden', function () {
+        js_hooks.each(function (idx, item) {
+            if ($(item).attr('onhidden')) {
+                eval($(item).attr('onhidden'));
+            }
+        });
+    });
+
+    modal.on('hide', function () {
+        js_hooks.each(function (idx, item) {
+            if ($(item).attr('onhide')) {
+                eval($(item).attr('onhide'));
+            }
+        });
+    });
+
+    modal.on('show', function () {
+        js_hooks.each(function (idx, item) {
+            if ($(item).attr('onShow')) {
+                eval($(item).attr('onShow'));
+            }
+        });
+    });
+
+    modal.on('shown', function () {
+        js_hooks.each(function (idx, item) {
+            if ($(item).attr('onshown')) {
+                console.log($(item));
+                eval($(item).attr('onshown'));
+            }
+        });
+    });
+}
+
 //activate the modal
 $(modal_container.children[0]).modal();
-window._asd();
+
+if(window._asd != undefined) {
+    window._asd();
+}
