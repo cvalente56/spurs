@@ -1,17 +1,25 @@
 # Spurs
 
-Spurs is a library that adds some bells and whistles to the Twitter Bootstrap GUI framework. I consists mostly of helpers and javascript, and thus is ORM agnostic.
+Spurs is a library that adds some bells and whistles to the Twitter Bootstrap GUI framework.
+
+## Installation
+There are many independent components of spurs, and some require more set up than others.
+
+To get started, in your gemfile, add
+
+```ruby
+gem 'spurs'
+```
+
+and then run
+
+```ruby
+bundle install
+```
 
 ## Flash Messages
 
-Put this in your layout file wherever you want to render the flash messages
-```erb
-<%= spurs_flash_helper %>
-```
-and flash messages will be automatically rendered on page loads
-
-From the rails side, you can create four types of messages
-
+From the rails side, you can create four types of messages: 
 * :notice
 * :warning
 * :info
@@ -20,6 +28,14 @@ From the rails side, you can create four types of messages
 ```ruby
 flash_addItem(:notices,"A message about something successfully happening!")
 ```
+It's especially easy to add model errors as flash messages. Here's a typical use
+```ruby
+m = Message.new(:title => "hello", :body => "world!")
+if !m.save
+  flash_addModelErrors(m)
+end
+```
+
 
 You can also use JavaScript to generate matching messages
 ```javascript
