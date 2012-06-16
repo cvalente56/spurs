@@ -19,11 +19,7 @@ bundle install
 
 ## Flash Messages
 
-From the rails side, you can create four types of messages: 
-* :notice
-* :warning
-* :info
-* :error
+From the rails side, you can create four types of messages: `:notice`, `:warning`, `:info` and `:error`
 
 ```ruby
 flash_addItem(:notices,"A message about something successfully happening!")
