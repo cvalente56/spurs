@@ -52,3 +52,11 @@ Spurs makes creation of bootstrap navigation easy!.
     = nav.tab :settings, :icon => :cog, :onclick => "alert('hello');"
 ```
 [More...](https://github.com/TrueNorth/spurs/wiki/Navigation)
+
+## Alerts
+Alerts are styled to match flash messages. Creating an in-place alert is done as follows
+```haml
+= spurs_alert_box do
+  This is a basic alert
+```
+[More...](https://github.com/TrueNorth/spurs/wiki/Alerts)
