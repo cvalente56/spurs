@@ -56,3 +56,32 @@ Alerts are styled to match flash messages. Creating an in-place alert is done as
   This is a basic alert
 ```
 [More...](https://github.com/TrueNorth/spurs/wiki/Alerts)
+
+## Asynchronous Modals
+Spurs can present a modal as a response to an asynchronous request. 
+
+For example, if your request is
+```javascript
+$.get({url: '/blogs/MY_BLOG/posts/new.js'});
+```
+Your controller response might look like
+```ruby
+@blog = Blog.find(params[:blog_id])
+respond_to do |format|
+  format.js {
+    spawn_modal("Create a new blog post",  #Title of the modal
+                "blogs/posts/new", # Path to a partial to render in the modal body.
+                @blog, # Object that the partial is rendering. Can be nil if the previous argument is not a partial
+                :title_icon => '/assets/new_blog_post_icon.png' # Path to an icon shown in the title bar of the modal
+                :modal_options => {} # A hash passed to the partial as local variables
+                ) 
+  }
+end
+```
+You can also use a method
+```ruby
+spawn_form_modal(...) #same arguments as spawn_modal
+```
+which will show a modal with an "OK" button in the footer. Pressing this button will submit any form in the .modal-body div.
+
+
