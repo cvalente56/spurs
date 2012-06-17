@@ -68,7 +68,7 @@ module Spurs
         end
         flash.clear
 
-        logger.debug("MESSAGE HASH >>#{message_hash.to_json}")
+        #logger.debug("MESSAGE HASH >>#{message_hash.to_json}")
 
 
         #process the message hash now

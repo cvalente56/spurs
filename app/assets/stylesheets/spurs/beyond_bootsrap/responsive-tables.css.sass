@@ -6,31 +6,32 @@ table
 @media only screen and (max-width: 767px)
   table.responsive
     margin-bottom: 0
-  .scrollable, .pinned
-    table
-      td, th
-        line-height: 21px
-  .pinned
-    position: absolute
-    left: 0
-    top: 0
-    background: #fff
-    width: 200px
+  .table-wrapper
+    .scrollable, .pinned
+      table
+        td, th
+          line-height: 21px
+    .pinned
+      position: absolute
+      left: 0
+      top: 0
+      background: #fff
+      width: 200px
 
-    overflow: hidden
-    overflow-x: scroll
-    //border-right: 1px solid #ccc
-    //border-left: 1px solid #ccc
-    table
-      border-right: none
-      border-left: none
-      width: 100%
-      .show_for_pinned
-        display: table-cell
-      .hide_for_pinned
-        display: none
-      th, td
-        white-space: nowrap
+      overflow: hidden
+      overflow-x: scroll
+      //border-right: 1px solid #ccc
+      //border-left: 1px solid #ccc
+      table
+        border-right: none
+        border-left: none
+        width: 100%
+        .show_for_pinned
+          display: table-cell
+        .hide_for_pinned
+          display: none
+        th, td
+          white-space: nowrap
 
   div.table-wrapper
     position: relative

@@ -12,6 +12,6 @@
 //
 //= require ./beyond_bootstrap/all
 
-$().ready(function(){
-    $('table.table').addClass('responsive');
-});
+//$().ready(function(){
+//    $('table.responsive').addClass('responsive');
+//});
