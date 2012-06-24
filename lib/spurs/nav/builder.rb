@@ -108,6 +108,9 @@ module Spurs
           if opts[:method] then
             a_opts[:method] = opts[:method]
           end
+          if opts[:target] then
+            a_opts[:target] = opts[:target]
+          end
         end
         if opts[:onclick]
           a_opts[:onclick] = opts[:onclick]
