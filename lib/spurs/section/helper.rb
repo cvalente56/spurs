@@ -15,6 +15,18 @@ module Spurs
         builder.build_collapsible_section(title.html_safe,section_content.html_safe)
       end
 
+      def spurs_section(title,options={},&block)
+        opts = Spurs::Section::section_default_options.merge(options)
+        if !opts[:builder]
+          raise "Null builder"
+        end
+
+        options_to_pass_to_builder = {}
+        builder = opts[:builder].new(options_to_pass_to_builder)
+        section_content = capture(nil,&block)
+        builder.build_section(title.html_safe,section_content.html_safe)
+      end
+
       def spurs_vcenter(options={}, &block)
         opts = options.clone
         if !opts[:class]

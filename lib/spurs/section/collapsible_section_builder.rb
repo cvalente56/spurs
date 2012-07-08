@@ -1,10 +1,6 @@
-class Spurs::Section::CollapsibleSectionBuilder
-  include ActionView::Helpers::TagHelper
+require "spurs/section/builder_base"
 
-  @options_from_helper
-  def initialize(args={})
-    @options_from_helper = args.clone
-  end
+class Spurs::Section::CollapsibleSectionBuilder < Spurs::Section::BuilderBase
 
   def build_collapsible_section(title,content)
     r = SecureRandom::hex(5)
