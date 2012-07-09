@@ -33,7 +33,11 @@ module Spurs
         extra_class   = options[:type] ? "alert-#{options[:type]}" : ""
         alert_content = String.new
         if options[:title]
-          alert_content.concat(content_tag(:h4, options[:title], :class => 'alert-heading'))
+          titl = options[:title]
+          if options[:title_icon]
+            titl = "<i class='icon-#{options[:title_icon]}' style='margin-right: 6px'></i>".concat(titl)
+          end
+          alert_content.concat(content_tag(:h4, titl.html_safe, :class => 'alert-heading'))
         end
         if block
           block_content = capture(nil, &block)
