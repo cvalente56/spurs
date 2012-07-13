@@ -18,6 +18,8 @@ require "spurs/section"
 require "spurs/engine"
 require "spurs/badge"
 
+require "bootstrap-wysihtml5-rails/engine"
+
 ActionView::Base.send :include, Spurs::Flash::Helper
 ActionView::Base.send :include, Spurs::Nav::Helper
 ActionView::Base.send :include, Spurs::Section::Helper

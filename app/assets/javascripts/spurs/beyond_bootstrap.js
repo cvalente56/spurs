@@ -11,7 +11,5 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require ./beyond_bootstrap/all
-
-//$().ready(function(){
-//    $('table.responsive').addClass('responsive');
-//});
+//= require wysihtml5
+//= require bootstrap-wysihtml5

@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency "actionpack", ">= 3.1"
   s.add_dependency "twitter-bootstrap-rails", "~> 2.0"
   s.add_dependency "haml", ">= 3.1"
+  s.add_dependency "bootstrap-wysihtml5-rails", "~> 0.2.12"
 
   if (RUBY_PLATFORM == "java")
     s.add_dependency "therubyrhino", ">= 1.73.4"
@@ -28,4 +29,5 @@ Gem::Specification.new do |s|
   end
 
   s.add_development_dependency "rails", "~> 3.1"
+
 end
