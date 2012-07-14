@@ -13,7 +13,7 @@ class Spurs::Section::SectionBuilder < Spurs::Section::BuilderBase
 
   private
   def build_header(title)
-    content_tag(:legend,title.to_s.titlecase)
+    content_tag(:legend,title)
   end
 
   def build_body(content)
