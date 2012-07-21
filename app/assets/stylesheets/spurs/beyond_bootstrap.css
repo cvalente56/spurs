@@ -1,7 +1,12 @@
 /*
  *= require ./beyond_bootsrap/all
  *= require bootstrap-wysihtml5
-
  */
+
+.dropdown-menu {
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 
 
