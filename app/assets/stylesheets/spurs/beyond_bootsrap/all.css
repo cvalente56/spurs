@@ -2,6 +2,5 @@
  *= require ./forms
  *= require ./responsive-tables
  *= require ./mobile_modal
- *= require ./button_column
  *= require ./bootstrap-collapsible-section
  */

@@ -18,9 +18,9 @@ GIT
 PATH
   remote: .
   specs:
-    spurs (0.0.4)
+    spurs (0.0.6.rc2)
       haml (>= 3.1.4)
-      rails (~> 3.2.1)
+      railties (~> 3.2.1)
       twitter-bootstrap-rails (~> 2.0)
 
 GEM
@@ -114,11 +114,11 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.1.0)
+    twitter-bootstrap-rails (2.1.1)
       actionpack (>= 3.1)
       less-rails (~> 2.2.2)
       railties (>= 3.1)
-      therubyracer (~> 0.10.1)
+      therubyracer (= 0.10.1)
     tzinfo (0.3.33)
 
 PLATFORMS
