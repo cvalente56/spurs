@@ -1,5 +1,5 @@
 # Spurs
-
+# An insignificant change
 Spurs is a library that adds some bells and whistles to the Twitter Bootstrap GUI framework.
 
 ## Installation
